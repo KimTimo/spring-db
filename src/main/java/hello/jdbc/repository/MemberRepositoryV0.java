@@ -23,15 +23,14 @@ public class MemberRepositoryV0 {
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, member.getMemberId());
             pstmt.setInt(2, member.getMoney());
+            pstmt.executeUpdate();
             return member;
         } catch (SQLException e) {
             log.error("connection error", e);
             e.printStackTrace();
             throw e;
         } finally {
-            // 커넥션을 닫아줘야한다.
-            pstmt.close();
-            con.close();
+            close(con, pstmt, null);
         }
     }
 
