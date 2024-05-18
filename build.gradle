@@ -24,7 +24,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'com.h2database:h2'
+    implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.3.3'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
