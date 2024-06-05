@@ -52,7 +52,7 @@ public class MemberServiceV2 {
     private static void release(Connection con) {
         if (con != null) {
             try {
-                // true로 안바꾸고 커넥션을 그냥 닫아버리면, 누군가가 커넥션을 획득했을 때,
+                // true로 안바꾸고 커넥션을 그냥 닫아버리면, 누군가가 커넥션을 획득했을 때 커밋이 안돼버리는 심각한 문제가 발생.
                 con.setAutoCommit(true);
                 con.close();
             } catch (Exception e) {
