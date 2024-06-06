@@ -1,9 +1,7 @@
 package hello.jdbc.service;
 
-import hello.jdbc.connection.ConnectionConst;
 import hello.jdbc.domain.Member;
 import hello.jdbc.repository.MemberRepositoryV1;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -34,6 +32,9 @@ class MemberServiceV1Test {
         memberService = new MemberServiceV1(memberRepository);
     }
 
+    /**
+     * TODO 테스트 데이터 제거!
+     */
     @AfterEach
     void after() throws SQLException {
         memberRepository.delete(MEMBER_A);
@@ -45,15 +46,18 @@ class MemberServiceV1Test {
     @DisplayName("정상 이체")
     void accountTransfer() throws SQLException {
         // given
+        // 초기 자본금
         Member memberA = new Member(MEMBER_A, 10000);
         Member memberB = new Member(MEMBER_B, 10000);
         memberRepository.save(memberA);
         memberRepository.save(memberB);
 
         // when
+        // 이체금액
         memberService.accountTransfer(memberA.getMemberId(), memberB.getMemberId(), 2000);
 
         // then
+        // member A B가 가진 금액이 테스트 결과와 맞는지.
         Member findMemberA = memberRepository.findById(memberA.getMemberId());
         Member findMemberB = memberRepository.findById(memberB.getMemberId());
         assertThat(findMemberA.getMoney()).isEqualTo(8000);
@@ -64,6 +68,7 @@ class MemberServiceV1Test {
     @DisplayName("이체중 예외 발생")
     void accountTransferEx() throws SQLException {
         //given
+        // 예외를 터뜨리기 위한 memberEx 세팅
          Member memberA = new Member(MEMBER_A, 10000);
          Member memberEx = new Member(MEMBER_EX, 10000);
          memberRepository.save(memberA);
