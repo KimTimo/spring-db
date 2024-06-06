@@ -78,7 +78,7 @@ class MemberServiceV2Test {
 
 
         //memberA의 돈이 롤백 되어야함
-        assertThat(findMemberA.getMoney()).isEqualTo(8000);
+        assertThat(findMemberA.getMoney()).isEqualTo(10000);
         assertThat(findMemberEx.getMoney()).isEqualTo(10000);
 
     }

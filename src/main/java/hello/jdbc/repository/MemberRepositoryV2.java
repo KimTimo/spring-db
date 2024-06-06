@@ -71,6 +71,10 @@ public class MemberRepositoryV2 {
             close(con, pstmt, rs);
         }
     }
+
+    /**
+     * TODO Connection 파라미터 추가!
+     */
     public Member findById(Connection con, String memberId) throws SQLException {
         String sql = "select * from member where member_id = ?";
 

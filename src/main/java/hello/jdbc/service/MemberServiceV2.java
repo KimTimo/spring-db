@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * 트랜잭션 - Parameter 연동, Pool을 고려한 종료
+ * TODO 트랜잭션 - Parameter 연동, Pool을 고려한 종료
  */
 @Slf4j
 @RequiredArgsConstructor
@@ -49,6 +49,9 @@ public class MemberServiceV2 {
         }
     }
 
+    /**
+     * TODO 꼭!!!!!! AutoCommit true로 바꾸고 커넥션을 닫아야 한다.
+     */
     private static void release(Connection con) {
         if (con != null) {
             try {
